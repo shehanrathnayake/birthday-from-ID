@@ -2,6 +2,7 @@ $(document).ready (()=>{
     let idNumber = $('#idInput')
     $('#submit').on('click', () => {
 
+        //Check if the input is empty
         if (idNumber.val() == '') {
 
             idNumber.addClass('is-invalid').removeClass('is-valid')
@@ -9,11 +10,13 @@ $(document).ready (()=>{
             $('#idInput+div').html('Input cannot be empty').addClass('invalid-feedback').removeClass('valid-feedback')
             $('#answer').html('')
 
+        //check if the input is a valid id number
         } else if (!validCheck(idNumber.val())){
             idNumber.addClass('is-invalid').removeClass('is-valid')
             $('#idInput+div').html('Invalid input').addClass('invalid-feedback').removeClass('valid-feedback')
             $('#answer').html('')
 
+        //Generating the answer
         } else {
             idNumber.addClass('is-valid').removeClass('is-invalid')
             $('#answer').html('Your birthday is '+ birthDate(idNumber.val()))
@@ -21,8 +24,12 @@ $(document).ready (()=>{
         }
     })
 
+    //Checking the validity of the input
+
     function validCheck(inputNumber){
         index = inputNumber.length-1
+
+        //check if the length of the input is 10, contains V or X at the end and others are digits
         if (inputNumber.length==10) {
             if ((inputNumber.charAt(index) == 'V' || inputNumber.charAt(index) == 'v' || inputNumber.charAt(index) == 'X' || inputNumber.charAt(index) == 'x')&& !isNaN(inputNumber.substr(0,index))) {
                 console.log(inputNumber.substr(0,index))
@@ -30,6 +37,7 @@ $(document).ready (()=>{
             } else {
                 return false
             }
+        //check if the length of the input is 12 and others are digits
         } else if (inputNumber.length==12 && !isNaN(inputNumber)) {
             console.log(inputNumber)
             return true
@@ -39,6 +47,7 @@ $(document).ready (()=>{
         }
     }
 
+    //Forming the birthday string
     function birthDate(inputNumber) {
         let year, birthday, days
         if (inputNumber.length==10) {
@@ -53,6 +62,7 @@ $(document).ready (()=>{
         return year + ' ' + birthday
     }
 
+    //Generating birth month and day
     function monthDays (year, days){
         if (days>=500){
             days = days-500
@@ -110,6 +120,7 @@ $(document).ready (()=>{
         
     }
 
+    //Checking the year is a leap year or not
     function leapYear(year){
         if (year%100==0){
             if (year%400==0) {
