@@ -29,19 +29,41 @@ $(document).ready (()=>{
     function validCheck(inputNumber){
         index = inputNumber.length-1
 
-        //check if the length of the input is 10, contains V or X at the end and others are digits
+        //check if the length of the input is 10, contains V or X at the end, others are digits and the date component has more than number of days in a year
         if (inputNumber.length==10) {
             if ((inputNumber.charAt(index) == 'V' || inputNumber.charAt(index) == 'v' || inputNumber.charAt(index) == 'X' || inputNumber.charAt(index) == 'x')&& !isNaN(inputNumber.substr(0,index))) {
-                console.log(inputNumber.substr(0,index))
-                return true
+                if (leapYear(parseInt('19'+inputNumber.substr(0,2)))){ //Checking leap years
+                    if (parseInt(inputNumber.substr(2,3))<=366){
+                        return true
+                    } else {
+                        return false
+                    }
+                }else {
+                    if (parseInt(inputNumber.substr(2,3))<=365){
+                        return true
+                    } else {
+                        return false
+                    }
+                }
+
             } else {
                 return false
             }
-        //check if the length of the input is 12 and others are digits
+        //check if the length of the input is 12, others are digits and the date component has more than number of days in a year
         } else if (inputNumber.length==12 && !isNaN(inputNumber)) {
-            console.log(inputNumber)
-            return true
-            
+            if (leapYear(parseInt('19'+inputNumber.substr(0,4)))){ //Checking leap years
+                if (parseInt(inputNumber.substr(4,3))<=366){
+                    return true
+                } else {
+                    return false
+                }
+            } else {
+                if (parseInt(inputNumber.substr(4,3))<=365){
+                    return true
+                } else {
+                    return false
+                }
+            }
         } else {
             return false
         }
@@ -116,6 +138,12 @@ $(document).ready (()=>{
             return 'November' + ' ' +days.toString()
         }
         days = days-30
+        if (days>31){
+            return 'December' + ' ' +days.toString()
+        }
+        else {
+
+        }
         return 'December' + ' ' +days.toString()
         
     }
