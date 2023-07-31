@@ -33,13 +33,13 @@ $(document).ready (()=>{
         if (inputNumber.length==10) {
             if ((inputNumber.charAt(index) == 'V' || inputNumber.charAt(index) == 'v' || inputNumber.charAt(index) == 'X' || inputNumber.charAt(index) == 'x')&& !isNaN(inputNumber.substr(0,index))) {
                 if (leapYear(parseInt('19'+inputNumber.substr(0,2)))){ //Checking leap years
-                    if (parseInt(inputNumber.substr(2,3))<=366){
+                    if (parseInt(inputNumber.substr(2,3))<=366 || (parseInt(inputNumber.substr(2,3))>500 && parseInt(inputNumber.substr(2,3))<=866)){
                         return true
                     } else {
                         return false
                     }
                 }else {
-                    if (parseInt(inputNumber.substr(2,3))<=365){
+                    if (parseInt(inputNumber.substr(2,3))<=365 || (parseInt(inputNumber.substr(2,3))>500 && parseInt(inputNumber.substr(2,3))<=865) ){
                         return true
                     } else {
                         return false
@@ -52,13 +52,13 @@ $(document).ready (()=>{
         //check if the length of the input is 12, others are digits and the date component has more than number of days in a year
         } else if (inputNumber.length==12 && !isNaN(inputNumber)) {
             if (leapYear(parseInt('19'+inputNumber.substr(0,4)))){ //Checking leap years
-                if (parseInt(inputNumber.substr(4,3))<=366){
+                if (parseInt(inputNumber.substr(4,3))<=366 || (parseInt(inputNumber.substr(4,3))>500 && parseInt(inputNumber.substr(4,3))<=866)){
                     return true
                 } else {
                     return false
                 }
             } else {
-                if (parseInt(inputNumber.substr(4,3))<=365){
+                if (parseInt(inputNumber.substr(4,3))<=365 || (parseInt(inputNumber.substr(4,3))>500 && parseInt(inputNumber.substr(4,3))<=865)){
                     return true
                 } else {
                     return false
