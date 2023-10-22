@@ -14,6 +14,10 @@ This project is licensed under [MIT License](License.txt).
 - JavaScript
 - jQuery
 
+## Supported Links
+
+- [Deployed Website](https://shehanrathnayake.github.io/birthday-from-ID/) 👈
+
 ## Sample Images
 
 ![](/demo/img/birthday-from-id.png)
